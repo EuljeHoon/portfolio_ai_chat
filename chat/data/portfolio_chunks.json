@@ -5,9 +5,9 @@
     },
     {
       "section": "experience",
-      "title": "Data Science Intern",
+      "title": "AI Engineering Intern",
       "company": "Bobcat Company",
-      "content": "Selected for the Summer 2026 AI / Machine Learning Engineering Internship program."
+      "content": "Contributed to the development of a Service AI that enables service technicians to quickly access equipment information and receive troubleshooting and repair guidance, Applied PaCMAP to reduce embedding dimensions (1024 → 5) and clustered knowledge articles into 7 semantic topics using HDBSCAN for a structured knowledge base, Developed a multi-stage evaluation pipeline combining DBCV, noise ratio, and LLM-based evaluation to assess clustering quality and downstream retrieval performance, Built a CloudWatch dashboard for AWS Bedrock Guardrails testing by aggregating testing logs into 5+ visualization widgets, improving monitoring of guardrail evaluation results."
     },
     {
       "section": "experience",
@@ -26,6 +26,11 @@
       "title": "Software Engineering Intern",
       "company": "Gallery Soma",
       "content": "Managed global state using Redux to optimize data flow and reduce redundant logic by 30%. Implemented RestAPI requests in JavaScript to fetch artworks, events, and artist data. Implemented JWT authentication with HttpOnly cookies, mitigating XSS risks and improving session persistence. Delivered images through AWS CloudFront CDN, improving load performance and reducing latency."
+    },
+    {
+      "section": "projects",
+      "title": "Mini-LangChain",
+      "content": "Built a LangChain-like framework implementing modular chains, RAG, ReAct agents, and hybrid memory, Designed extensible interfaces enabling interchangeable LLMs, vector stores, and embedding models, Integrated an AI agent and ChromaDB to build a RAG system with hybrid memory and semantic retrieval."
     },
     {
       "section": "projects",
