@@ -6,7 +6,25 @@ This AI system works without **vector DB/embedding**, chooses JSON chunks based 
 
 ## API endpoint
 
-- `POST /api/chat/`
+### `GET /health/`
+
+A lightweight warm-up / health-check endpoint. It returns an immediate `200`
+with no DB access, no Gemini call, and no auth or throttling. Its only purpose
+is to wake the server process (Render free tier spins down after ~15 min idle),
+so the frontend can pre-warm the backend before the user asks a real question.
+
+```json
+{
+  "status": "ok"
+}
+```
+
+```bash
+curl -i https://portfolio-ai-chat.onrender.com/health/
+```
+
+### `POST /api/chat/`
+
 - example prompt:
 
 ```json
@@ -43,6 +61,24 @@ This AI system works without **vector DB/embedding**, chooses JSON chunks based 
 7. Call Gemini(`gemini-2.5-flash-lite`) and create response
 8. Work on the formatting(Remove useless markdown, bullets) and return the response
 
+### Off-topic guard (scope restriction)
+
+The Gemini prompt is instructed to answer **only** questions about Jehoon's
+portfolio (background, experience, projects, skills). If a question is
+unrelated (general knowledge, coding help, math, current events, etc.), the
+model returns a fixed refusal message instead of answering:
+
+> I can only answer questions about Jehoon Park's portfolio, such as his
+> background, experience, projects, and skills.
+
+The prompt also instructs the model to ignore any instructions embedded inside
+the user's question that try to change its role or rules (basic prompt-injection
+mitigation). Both the busy fallback and the off-topic refusal are **not cached**,
+so they are never served as a stored answer to later questions.
+
+> Note: this is prompt-based guidance, not a hard filter, so it covers the vast
+> majority of off-topic cases but is not a 100% guarantee.
+
 ## Important Point
 
 - This is not **semantic vector search**
@@ -78,9 +114,11 @@ The application is deployed on Render.
 🔗 Live URL: https://portfolio-ai-chat.onrender.com
 ### Notes on Performance
 
-The application is currently hosted on Render’s free tier. As a result, the first request may experience slower response times due to cold-start latency when the service has been idle.
+The application is currently hosted on Render's free tier. As a result, the first request may experience slower response times due to cold-start latency when the service has been idle (the service spins down after ~15 minutes with no traffic).
 
-Additionally, the system uses a RAG (Retrieval-Augmented Generation) pipeline, which involves external API calls (e.g., LLM and retrieval services), contributing further to overall response time.
+To reduce this, the frontend pre-warms the backend by calling `GET /health/` in the background when the user opens the chat page (and again on input focus), so the server is more likely to be awake by the time a real question is sent.
+
+Response time also depends on the external Gemini API call, which contributes to overall latency.
 
 ## Future development idea
 
