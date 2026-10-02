@@ -75,9 +75,10 @@
       "content": "Developed a Java-Swing based block game using object-oriented programming principles. Parsed string grids to generate dynamic layouts and extract blocks using ArrayList, enabling scalable level setup. Implemented smooth block movement by detecting mouse drag direction and updating block position accordingly within grid constraints. Implemented interactive block selection by translating mouse input into grid coordinates to enable user-controlled block manipulation."
     },
     {
-      "section": "skills",
-      "programming_languages": "Python, Java, JavaScript, TypeScript, C, C++, SQL, OCaml, HTML, CSS",
-      "frameworks_libraries": "Fast MCP, Django, PyTorch, FastAPI, React, Spring Boot, Next.js(SSR), Express.js",
-      "databases_cloud_devops": "Pinecone, Databricks, PostgreSQL, MySQL, MongoDB, GCP, AWS, Github Actions"
+      "Languages": "Python, C/C++, Java, JavaScript, TypeScript, SQL, OCaml",
+      "AI/ML": "PyTorch, LangChain, Scikit-learn, Bedrock, SageMaker",
+      "Frameworks": "FastAPI, Django, Spring Boot, React, Next.js",
+      "Cloud & Data": "AWS, GCP, PostgreSQL, MySQL, MongoDB, Pinecone, Databricks, Snowflake",
+      "Tools": "Git, GitHub Actions, Docker, FastMCP"
     }
   ]
